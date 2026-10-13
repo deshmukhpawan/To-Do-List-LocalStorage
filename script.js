@@ -19,21 +19,22 @@ if (isLightTheme) {
   themeButton.innerHTML = "Dark";
   themeButton.style.backgroundColor = "black";
   themeButton.style.color = "white";
-  inputContainer.style.backgroundColor = "red";
+  inputContainer.style.backgroundColor = "black";
 }
 
 themeButton.addEventListener("click", function () {
   if (isLightTheme) {
-    themeButton.innerHTML = "Dark";
-    themeButton.style.backgroundColor = "black";
-    themeButton.style.color = "white";
-    inputContainer.style.backgroundColor = "red";
-  } else {
     themeButton.innerHTML = "Light";
     themeButton.style.backgroundColor = "white";
     themeButton.style.color = "black";
+    inputContainer.style.backgroundColor = "black";
+  } else {
+    themeButton.innerHTML = "Dark";
+    themeButton.style.backgroundColor = "black";
+    themeButton.style.color = "white";
     inputContainer.style.backgroundColor = "#e3f2fd";
   }
+
   isLightTheme = !isLightTheme;
   localStorage.setItem("theme", JSON.stringify(isLightTheme));
 });
@@ -58,6 +59,7 @@ function taskAdder() {
   let taskObj = {
     task: taskText,
     id: Date.now(),
+    completed: false,
   };
   taskArray.push(taskObj);
   // update local storage
@@ -77,7 +79,7 @@ inputTag.addEventListener("keydown", function (event) {
 function createTaskAndAddtoUI(arr = taskArray) {
   taskContainer.innerHTML = "";
   arr.forEach(function (taskObj) {
-    let { id, task } = taskObj;
+    let { id, task, completed = false } = taskObj;
     let taskEle = document.createElement("div");
     taskEle.classList.add("task");
     taskEle.innerHTML = `
@@ -107,11 +109,37 @@ function createTaskAndAddtoUI(arr = taskArray) {
             <path
               d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
             ></path>
-          </svg>`;
+          </svg>
+          
+          
+          <button class="taskStatusbtn incomplete">
+            Incomplete
+          </button>
+          </div>`;
 
     const deleteIcon = taskEle.querySelector("#delete");
     const editIcon = taskEle.querySelector("#edit");
     const taskTextEle = taskEle.querySelector("#taskText");
+
+    
+const statusBtn = taskEle.querySelector(".taskStatusbtn");
+
+if (completed) {
+  statusBtn.innerHTML = "Complete";
+  statusBtn.classList.remove("incomplete");
+  statusBtn.classList.add("complete");
+} else {
+  statusBtn.innerHTML = "Incomplete";
+  statusBtn.classList.remove("complete");
+  statusBtn.classList.add("incomplete");
+}
+
+statusBtn.addEventListener("click", function () {
+  taskObj.completed = !taskObj.completed;
+  updateLocalStorage();
+  createTaskAndAddtoUI();
+});
+
     let isTextEditable = false;
 
     deleteIcon.addEventListener("click", function () {

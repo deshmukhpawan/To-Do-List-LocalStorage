@@ -3,106 +3,188 @@
   padding: 0;
   box-sizing: border-box;
 }
-#themeButton {
-  height: 50%;
-  width: 5%;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: black;
-  margin-left: auto;
-  margin-right: 20px;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0f172a;
 }
+
+/* Input Section */
 .inputContainer {
-  background-color: #e3f2fd;
-  height: 10vh;
-  width: 100vw;
+  background-color: #1e293b;
+  min-height: 90px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 15px 20px;
+  gap: 12px;
 }
 
-#input {
-  margin-left: auto;
-  height: 50%;
-  width: 30%;
+/* Theme Button */
+#themeButton {
+  min-height: 42px;
+  min-width: 85px;
+  background-color: #f8fafc;
   border: none;
-  border-radius: 10px;
-  outline: none;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 0.7rem;
-}
-#btn {
-  height: 50%;
-  width: 5%;
-  background-color: #ffbe91;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 0.7rem;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: white;
-  margin-left: 10px;
+  color: #0f172a;
+  margin-left: auto;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
+
+/* Input Field */
+#input {
+  height: 42px;
+  width: 35%;
+  min-width: 150px;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  outline: none;
+  padding: 0 12px;
+  font-size: 0.95rem;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+#input:focus {
+  border: 2px solid #38bdf8;
+}
+
+/* Add Button */
+#btn {
+  min-height: 42px;
+  min-width: 85px;
+  background-color: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#btn:hover {
+  background-color: #0ea5e9;
+}
+
+/* Task List */
 .taskContainer {
-  background-color: #2196f3;
-  height: 90vh;
-  width: 100vw;
+  background-color: #0f172a;
+  min-height: 90vh;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  padding: 15px 12px 30px;
 }
 
+/* Individual Task */
 .task {
-  height: 50px;
-  width: 50%;
-  background-color: #90caf9;
-  margin-top: 20px;
+  min-height: 60px;
+  width: min(700px, 90%);
+  background-color: #1e293b;
+  color: #f8fafc;
+  margin-top: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-radius: 10px;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: 0.2s ease;
+}
+
+.task:hover {
+  border-color: #38bdf8;
+  transform: translateY(-2px);
 }
 
 .task > p {
   margin-right: auto;
   outline: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+  color: #f8fafc;
 }
 
 .taskOptions {
-  height: 100%;
-  width: 10%;
+  min-height: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
 }
 
+/* Complete / Incomplete Buttons */
 .taskStatusbtn {
-  height: 70%;
-  width: 50%;
+  min-height: 30px;
   border: none;
-  border-radius: 10px;
-  outline: none;
-  font-size: 1rem;
+  border-radius: 7px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
   font-weight: 700;
   color: white;
-  margin-right: 4px;
+  cursor: pointer;
 }
+
 .complete {
-  background-color: green;
+  background-color: #16a34a;
 }
 
 .incomplete {
-  background-color: red;
+  background-color: #dc2626;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .inputContainer {
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  #input {
+    width: 45%;
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  #btn {
+    min-width: 65px;
+    padding: 10px;
+  }
+
+  #themeButton {
+    min-width: 70px;
+    margin-right: 0;
+  }
+
+  .task {
+    width: 100%;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .task > p {
+    font-size: 0.9rem;
+  }
+
+  .taskOptions {
+    gap: 5px;
+  }
+
+  .taskStatusbtn {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
 }
